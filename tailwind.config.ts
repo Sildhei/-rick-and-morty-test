@@ -20,10 +20,9 @@ const config: Config = {
           middle: "#0c2005",
           dark: "#091a04",
         },
-        blue:{
-          light: "#11b0c8"
-
-        }
+        blue: {
+          light: "#11b0c8",
+        },
       },
     },
   },

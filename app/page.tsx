@@ -1,5 +1,13 @@
-export default function Home() {
+import { getAllCharacters } from "./api/getAllCharacters";
+import MainSection from "./components/MainSection/MainSection";
+
+export default async function Home() {
+  
+  const characters = await getAllCharacters()
+ 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 bg-gray-300" />
+    <div className="bg-gray-300">
+      <MainSection characters={characters} />
+    </div>
   );
 }
