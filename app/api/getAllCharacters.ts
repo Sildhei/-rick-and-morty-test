@@ -29,8 +29,9 @@ export interface IExtendedCharacterData {
   results: ICharacterData[];
 }
 
-export const getAllCharacters = async () => {
-  const res = await fetch(`${process.env.BASE_URL}/character`, {
+export const getAllCharacters = async (page: number) => {
+
+  const res = await fetch(`${process.env.BASE_URL}/character/?page=${page}`, {
     method: "GET",
     next: { tags: ["characters-data"] },
   });

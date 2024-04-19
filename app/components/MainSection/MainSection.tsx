@@ -1,6 +1,7 @@
 import { IExtendedCharacterData } from "@/app/api/getAllCharacters";
 import CharactersSection from "../CharactersSection/CharactersSection";
 import Container from "../commons/Container";
+import Pagination from "../Pagination/Pagination";
 
 export type CharactersProps = {
   characters: IExtendedCharacterData;
@@ -11,6 +12,7 @@ const MainSection = ({ characters }: CharactersProps) => {
     <div className="py-4">
       <Container>
         <CharactersSection characters={characters} />
+        <Pagination totalPages={characters.info.pages} />
       </Container>
     </div>
   );
