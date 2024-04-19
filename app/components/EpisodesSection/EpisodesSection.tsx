@@ -54,7 +54,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
               {index === 1 && episodesList.length === 0 ? (
                 <p className='text-red-600 text-xs'>These two characters don&apos;t share any episodes</p>
               ) : (
-                <ul>
+                <ul className='max-h-[300px] overflow-scroll'>
                   {episodesList.map(episode => (
                     <li key={episode.id} className='py-1'>
                       <p className='text-gray-800 text-xs'>
