@@ -9,8 +9,8 @@ import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
 import { getEpisodesAction } from '@/app/helpers/actions';
 
 interface CharactersSectionProps extends CharactersProps {
-  selectedCharacters: number[];
-  setSelectedCharacters: Dispatch<SetStateAction<number[]>>;
+  selectedCharacters: { id: number; name: string }[];
+  setSelectedCharacters: Dispatch<SetStateAction<{ id: number; name: string }[]>>;
   setEpisodes: Dispatch<SetStateAction<IEpisodeData[][]>>;
 }
 
@@ -27,7 +27,7 @@ const CharactersSection = ({
   const handleOnClickCharacter = async (character: ICharacterData, index: number) => {
     setSelectedCharacters(prev => {
       const newSelectedCharacters = [...prev];
-      newSelectedCharacters[index] = character.id;
+      newSelectedCharacters[index] = { id: character.id, name: character.name };
       return newSelectedCharacters;
     });
 
