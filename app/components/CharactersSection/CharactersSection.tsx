@@ -26,11 +26,11 @@ const CharactersSection = ({ characters }: CharactersProps) => {
   return (
     <div className="flex flex-row items-center justify-between mt-4">
       {charactersLists.map((list, index) => (
-        <div className="border-[1px] border-gray-800 rounded-md p-4">
+        <div className="border-[1px] border-gray-800 rounded-md p-4" key={list[0].name}>
           <p className="text-gray-800 font-bold text-xl">
             Character #{index + 1}
           </p>
-          <div className="grid grid-cols-2 gap-4 mt-4" key={list[0].name}>
+          <div className="grid grid-cols-2 gap-4 mt-4">
             {list.map((character) => (
               <div
                 key={character.id}
