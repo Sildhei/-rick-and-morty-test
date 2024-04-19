@@ -23,7 +23,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
     }
 
     const combinedArray = [...arr1, ...arr2].filter((current, index, array) => {
-      return index === array.findIndex(item => item.id === current.id);
+      return index !== array.findIndex(item => item.id === current.id);
     });
 
     newEpisodesArr.splice(
