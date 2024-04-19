@@ -1,26 +1,45 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { Dispatch, SetStateAction, useMemo } from 'react';
 import CharacterCard from './CharacterCard';
 import { getEpisodesIds } from '@/app/helpers/getEpisodesId';
 import { CharactersProps } from '../MainSection/MainSection';
 import { ICharacterData } from '@/app/api/getAllCharacters';
+import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
+import { getEpisodesAction } from '@/app/helpers/actions';
 
-const CharactersSection = ({ characters }: CharactersProps) => {
-  const [selectedCharacters, setSelectedCharacters] = useState<number[]>([]);
+interface CharactersSectionProps extends CharactersProps {
+  selectedCharacters: number[];
+  setSelectedCharacters: Dispatch<SetStateAction<number[]>>;
+  setEpisodes: Dispatch<SetStateAction<IEpisodeData[][]>>;
+}
 
+const CharactersSection = ({
+  characters,
+  selectedCharacters,
+  setSelectedCharacters,
+  setEpisodes,
+}: CharactersSectionProps) => {
   const charactersLists = useMemo(() => {
     return [characters.results.slice(0, 10), characters.results.slice(10, 20)];
   }, [characters]);
 
-  const handleOnClickCharacter = (character: ICharacterData, index: number) => {
+  const handleOnClickCharacter = async (character: ICharacterData, index: number) => {
     setSelectedCharacters(prev => {
       const newSelectedCharacters = [...prev];
       newSelectedCharacters[index] = character.id;
       return newSelectedCharacters;
     });
+
     const episodesIds = getEpisodesIds(character.episode);
-    console.log('epId2', episodesIds);
+
+    const episodesData = await getEpisodesAction(episodesIds);
+
+    setEpisodes(prev => {
+      const newEpisodes = [...prev];
+      newEpisodes[index] = Array.isArray(episodesData) ? episodesData : [episodesData];
+      return newEpisodes;
+    });
   };
 
   return (
