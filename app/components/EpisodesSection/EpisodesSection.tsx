@@ -42,17 +42,17 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
           {parsedEpisodes.map((episodesList, index) => (
             <div className='border-[1px] border-gray-800 rounded-md p-4' key={index}>
               {index !== 1 ? (
-                <p className='text-gray-800 font-bold'>
+                <h3 className='text-gray-800 font-bold'>
                   {selectedCharacters[index === 0 ? index : index - 1].name} - Only Episodes
-                </p>
+                </h3>
               ) : (
-                <p className='text-gray-800 font-bold'>
+                <h3 className='text-gray-800 font-bold'>
                   {selectedCharacters[0].name} & {selectedCharacters[1].name} - Shared Episodes
-                </p>
+                </h3>
               )}
               <div className='w-full h-[1px] bg-gray-800 my-2' />
               {index === 1 && episodesList.length === 0 ? (
-                <p className='text-red-600 text-xs'>These two characters don&apos;t share any episodes</p>
+                <h3 className='text-red-600 text-xs'>These two characters don&apos;t share any episodes</h3>
               ) : (
                 <ul className='max-h-[300px] overflow-scroll'>
                   {episodesList.map(episode => (
@@ -69,7 +69,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
         </div>
       ) : (
         <div className='flex flex-col items-center border-[1px] border-gray-800 rounded-md p-2 w-full max-w-[500px] mx-auto'>
-          <p className='text-gray-800 text-lg font-bold'>Select two characters to see their episodes...</p>
+          <h3 className='text-gray-800 text-lg font-bold'>Select two characters to see their episodes...</h3>
           <div className='w-[300px] h-[350px] relative mt-4'>
             <Image
               src='/episodes-image.png'
