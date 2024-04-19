@@ -38,7 +38,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
   return (
     <div>
       {parsedEpisodes ? (
-        <div className='grid grid-cols-3 gap-4 mt-4 '>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-4 mt-4 '>
           {parsedEpisodes.map((episodesList, index) => (
             <div className='border-[1px] border-gray-800 rounded-md p-4' key={index}>
               {index !== 1 ? (
@@ -54,7 +54,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
               {index === 1 && episodesList.length === 0 ? (
                 <p className='text-red-600 text-xs'>These two characters don&apos;t share any episodes</p>
               ) : (
-                <ul className='max-h-[300px] overflow-scroll'>
+                <ul className='max-h-[150px] lg:max-h-[300px] overflow-scroll'>
                   {episodesList.map(episode => (
                     <li key={episode.id} className='py-1'>
                       <p className='text-gray-800 text-xs'>
