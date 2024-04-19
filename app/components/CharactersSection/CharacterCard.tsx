@@ -22,8 +22,8 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
           alt={character.name}
           layout='fill'
           objectFit='cover'
-          className={`absolute top-0 right-0 left-0 bottom-0 rounded-l-md ransition-transform duration-300 transform ${
-            !isDisabled && 'group-hover:scale-125 group-hover:rounded-l-[40px]'
+          className={`absolute top-0 right-0 left-0 bottom-0 rounded-l-md transition-transform duration-300 transform ${
+            !isDisabled && 'group-hover:scale-125'
           }`}
         />
       </div>

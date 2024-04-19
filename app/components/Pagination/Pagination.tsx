@@ -12,7 +12,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
     <div className='flex flex-row justify-center gap-6 my-6 w-[160px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
       <button
         className={`text-gray-800 text-lg ${Number(page) !== 1 && 'hover:text-green-500'} ${
-          Number(page) === 1 && 'cursor-not-allowed text-gray-500'
+          Number(page) === 1 && 'cursor-not-allowed text-gray-400'
         } `}
         onClick={() =>
           router.push(`/?page=${Number(page) - 1}`, {
@@ -25,7 +25,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       <p className='text-gray-800 text-lg font-bold'>{page}</p>
       <button
         className={`text-gray-800 text-lg ${Number(page) !== totalPages - 1 && 'hover:text-green-500'} ${
-          Number(page) === totalPages - 1 && 'cursor-not-allowed text-gray-500'
+          Number(page) === totalPages - 1 && 'cursor-not-allowed text-gray-400'
         } `}
         onClick={() =>
           router.push(`/?page=${Number(page) + 1}`, {
