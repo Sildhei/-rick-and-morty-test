@@ -24,15 +24,15 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       </button>
       <p className='text-gray-800 text-lg font-bold'>{page}</p>
       <button
-        className={`text-lg ${Number(page) !== totalPages - 1 ? 'text-gray-800' : 'text-gray-400'} ${
-          Number(page) !== totalPages - 1 && 'hover:text-green-500'
-        } ${Number(page) === totalPages - 1 && 'cursor-not-allowed'} `}
+        className={`text-lg ${Number(page) !== totalPages ? 'text-gray-800' : 'text-gray-400'} ${
+          Number(page) !== totalPages && 'hover:text-green-500'
+        } ${Number(page) === totalPages && 'cursor-not-allowed'} `}
         onClick={() =>
           router.push(`/?page=${Number(page) + 1}`, {
             scroll: false,
           })
         }
-        disabled={Number(page) === totalPages - 1}>
+        disabled={Number(page) === totalPages}>
         Next
       </button>
     </div>
