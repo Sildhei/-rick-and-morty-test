@@ -1,5 +1,5 @@
 import { getAllCharacters } from './api/getAllCharacters';
-import ErrorComponent from './components/CharactersSection/Error/ErrorComponent';
+import ErrorComponent from './components/Error/ErrorComponent';
 import MainSection from './components/MainSection/MainSection';
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
