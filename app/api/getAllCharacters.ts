@@ -30,12 +30,19 @@ export interface IExtendedCharacterData {
 }
 
 export const getAllCharacters = async (page: number) => {
-  const res = await fetch(`${process.env.BASE_URL}/character/?page=${page}`, {
-    method: 'GET',
-    next: { tags: ['characters-data'] },
-  });
-  if (!res.ok) {
+  try {
+    console.log('pahe', page);
+    const res = await fetch(`${process.env.BASE_URL}/character/?page=${page}`, {
+      method: 'GET',
+      next: { tags: ['characters-data'] },
+    });
+    console.log('res', res);
+    return res.json();
+  } catch (error) {
     throw new Error('Failed to fetch data');
   }
-  return res.json();
+
+  // if (!res.ok) {
+  //   throw new Error('Failed to fetch data');
+  // }
 };
