@@ -20,8 +20,12 @@ const CharactersSection = ({
   setSelectedCharacters,
   setEpisodes,
 }: CharactersSectionProps) => {
+
   const charactersLists = useMemo(() => {
-    return [characters.results.slice(0, 10), characters.results.slice(10, 20)];
+    return [
+      characters.results.slice(0, characters.results.length / 2),
+      characters.results.slice(characters.results.length / 2, characters.results.length),
+    ];
   }, [characters]);
 
   const handleOnClickCharacter = async (character: ICharacterData, index: number) => {
