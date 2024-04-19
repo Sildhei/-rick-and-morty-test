@@ -4,7 +4,7 @@ const Container = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="w-full max-w-[1300px] mx-auto px-10">
+    <div className="w-full max-w-[1400px] mx-auto px-4">
       {children}
     </div>
   );
