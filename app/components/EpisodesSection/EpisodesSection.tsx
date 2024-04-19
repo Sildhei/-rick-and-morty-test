@@ -52,7 +52,7 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
               )}
               <div className='w-full h-[1px] bg-gray-800 my-2' />
               {index === 1 && episodesList.length === 0 ? (
-                <p className='text-red-600 text-xs'>These two characters don't share any episodes</p>
+                <p className='text-red-600 text-xs'>These two characters don&apos;t share any episodes</p>
               ) : (
                 <ul>
                   {episodesList.map(episode => (
