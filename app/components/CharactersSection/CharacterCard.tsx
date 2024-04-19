@@ -16,13 +16,13 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
   return (
     <div className='max-w-[300px] flex flex-row rounded-md relative group'>
       {isDisabled && <div className='absolute inset-0 bg-green-light z-10 opacity-30' />}
-      <div className='w-[100px] h-[120px] relative overflow-hidden'>
+      <div className='w-[100px] h-[120px] rounded-l-md relative overflow-hidden'>
         <Image
           src={character.image}
           alt={character.name}
           layout='fill'
           objectFit='cover'
-          className={`absolute top-0 right-0 left-0 bottom-0 rounded-l-md transition-transform duration-300 transform ${
+          className={`absolute top-0 right-0 left-0 bottom-0 transition-transform duration-300 transform ${
             !isDisabled && 'group-hover:scale-125'
           }`}
         />
