@@ -51,15 +51,19 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
                 </p>
               )}
               <div className='w-full h-[1px] bg-gray-800 my-2' />
-              <ul>
-                {episodesList.map(episode => (
-                  <li key={episode.id} className='py-1'>
-                    <p className='text-gray-800 text-xs'>
-                      Episode #{episode.id} - {episode.name} - {episode.air_date}
-                    </p>
-                  </li>
-                ))}
-              </ul>
+              {index === 1 && episodesList.length === 0 ? (
+                <p className='text-red-600 text-xs'>These two characters don't share any episodes</p>
+              ) : (
+                <ul>
+                  {episodesList.map(episode => (
+                    <li key={episode.id} className='py-1'>
+                      <p className='text-gray-800 text-xs'>
+                        Episode #{episode.id} - {episode.name} - {episode.air_date}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           ))}
         </div>
