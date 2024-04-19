@@ -1,19 +1,13 @@
-import { getAllCharacters } from "./api/getAllCharacters";
-import MainSection from "./components/MainSection/MainSection";
+import { getAllCharacters } from './api/getAllCharacters';
+import MainSection from './components/MainSection/MainSection';
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: { [key: string]: string | undefined };
-}) {
-
-  const page = searchParams["page"] ?? "1";
+export default async function Home({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
+  const page = searchParams['page'] ?? '1';
   const characters = await getAllCharacters(Number(page));
 
   return (
-    <div className="bg-gray-300">
+    <div className='bg-gray-300'>
       <MainSection characters={characters} />
     </div>
   );
 }
-
