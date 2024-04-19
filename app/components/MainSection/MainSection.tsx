@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { useState } from 'react';
 import { IExtendedCharacterData } from '@/app/api/getAllCharacters';
@@ -13,8 +13,8 @@ export type CharactersProps = {
 };
 
 const MainSection = ({ characters }: CharactersProps) => {
-  const [selectedCharacters, setSelectedCharacters] = useState<number[]>([]);
-  const [episodes, setEpisodes] = useState<IEpisodeData[][]>([])
+  const [selectedCharacters, setSelectedCharacters] = useState<{ id: number; name: string }[]>([]);
+  const [episodes, setEpisodes] = useState<IEpisodeData[][]>([]);
 
   return (
     <div className='py-8'>
@@ -26,7 +26,7 @@ const MainSection = ({ characters }: CharactersProps) => {
           setEpisodes={setEpisodes}
         />
         <Pagination totalPages={characters.info.pages} />
-        <EpisodesSection episodes={episodes}/>
+        <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
       </Container>
     </div>
   );

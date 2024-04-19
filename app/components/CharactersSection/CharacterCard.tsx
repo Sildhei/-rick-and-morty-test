@@ -4,7 +4,7 @@ import { ICharacterData } from '@/app/api/getAllCharacters';
 
 type CharacterProps = {
   character: ICharacterData;
-  selectedCharacters: number[];
+  selectedCharacters: { id: number; name: string }[];
   index: number;
 };
 
@@ -28,12 +28,12 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
         />
       </div>
       <div
-        className={`p-4 w-[200px] ${selectedCharacters.includes(character.id) ? 'bg-primary' : 'bg-gray-800'} ${
-          !isDisabled && 'group-hover:bg-primary'
-        } rounded-r-md transition-all`}>
+        className={`p-4 w-[200px] ${
+          selectedCharacters.find(selected => selected.id === character.id) ? 'bg-primary' : 'bg-gray-800'
+        } ${!isDisabled && 'group-hover:bg-primary'} rounded-r-md transition-all`}>
         <p
           className={`font-bold line-clamp-2 leading-5 ${
-            selectedCharacters.includes(character.id) ? 'text-gray-800' : 'text-primary'
+            selectedCharacters.find(selected => selected.id === character.id) ? 'text-gray-800' : 'text-primary'
           } ${!isDisabled && 'group-hover:text-gray-800'} transition-all`}>
           {character.name}
         </p>
@@ -45,7 +45,7 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
           />
           <p
             className={`text-[13px] ${
-              selectedCharacters.includes(character.id) ? 'text-gray-800' : 'text-green-light'
+              selectedCharacters.find(selected => selected.id === character.id) ? 'text-gray-800' : 'text-green-light'
             } ${!isDisabled && 'group-hover:text-gray-800'} transition-all`}>
             {character.status} - {character.species}
           </p>

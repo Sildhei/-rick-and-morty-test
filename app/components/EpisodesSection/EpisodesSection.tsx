@@ -4,10 +4,10 @@ import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
 
 interface EpisodesSectionProps {
   episodes: IEpisodeData[][];
+  selectedCharacters: { id: number; name: string }[];
 }
 
-const EpisodesSection = ({ episodes }: EpisodesSectionProps) => {
-
+const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps) => {
   const parsedEpisodes = useMemo(() => {
     const newEpisodesArr = [...episodes];
 
@@ -26,7 +26,11 @@ const EpisodesSection = ({ episodes }: EpisodesSectionProps) => {
       return index === array.findIndex(item => item.id === current.id);
     });
 
-    newEpisodesArr.splice(1, 0, combinedArray.sort((a,b)=>a.id - b.id));
+    newEpisodesArr.splice(
+      1,
+      0,
+      combinedArray.sort((a, b) => a.id - b.id)
+    );
 
     return newEpisodesArr;
   }, [episodes]);
@@ -38,9 +42,13 @@ const EpisodesSection = ({ episodes }: EpisodesSectionProps) => {
           {parsedEpisodes.map((episodesList, index) => (
             <div className='border-[1px] border-gray-800 rounded-md p-4' key={index}>
               {index !== 1 ? (
-                <p className='text-gray-800 font-bold'>Character #{index === 0? index + 1 : index} - Only Episodes</p>
+                <p className='text-gray-800 font-bold'>
+                  {selectedCharacters[index === 0 ? index : index - 1].name} - Only Episodes
+                </p>
               ) : (
-                <p className='text-gray-800 font-bold'>Character #1 & Character #2 - Shared Episodes</p>
+                <p className='text-gray-800 font-bold'>
+                  {selectedCharacters[0].name} & {selectedCharacters[1].name} - Shared Episodes
+                </p>
               )}
               <div className='w-full h-[1px] bg-gray-800 my-2' />
               <ul>
