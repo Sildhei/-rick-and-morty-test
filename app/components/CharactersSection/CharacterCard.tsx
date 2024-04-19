@@ -22,7 +22,7 @@ const CharacterCard = ({
       {isDisabled && (
         <div className="absolute inset-0 bg-green-light z-10 opacity-30" />
       )}
-      <div className="w-[100px] h-[100px] relative overflow-hidden">
+      <div className="w-[100px] h-[120px] relative overflow-hidden">
         <Image
           src={character.image}
           alt={character.name}
@@ -41,7 +41,7 @@ const CharacterCard = ({
         } ${!isDisabled && "group-hover:bg-primary"} transition-all`}
       >
         <p
-          className={`text-md font-bold ${
+          className={`font-bold line-clamp-2 leading-5 ${
             selectedCharacters.includes(character.id)
               ? "text-gray-800"
               : "text-primary"
@@ -50,7 +50,7 @@ const CharacterCard = ({
           {character.name}
         </p>
         <p
-          className={`text-sm ${
+          className={`text-[13px] mt-2 ${
             selectedCharacters.includes(character.id)
               ? "text-gray-800"
               : "text-green-light"
