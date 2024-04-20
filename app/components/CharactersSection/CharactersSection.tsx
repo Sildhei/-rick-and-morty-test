@@ -1,12 +1,12 @@
 'use client';
 
-import { Dispatch, SetStateAction, useMemo } from 'react';
+import { Dispatch, SetStateAction, useEffect, useMemo, useState } from 'react';
 import CharacterCard from './CharacterCard';
 import { getEpisodesIds } from '@/app/helpers/getEpisodesId';
 import { CharactersProps } from '../MainSection/MainSection';
 import { ICharacterData } from '@/app/api/getAllCharacters';
 import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
-import { getEpisodesAction } from '@/app/helpers/actions';
+import { getCharactersAction, getEpisodesAction } from '@/app/helpers/actions';
 
 interface CharactersSectionProps extends CharactersProps {
   selectedCharacters: { id: number; name: string }[];
@@ -20,6 +20,11 @@ const CharactersSection = ({
   setSelectedCharacters,
   setEpisodes,
 }: CharactersSectionProps) => {
+  const [name, setName] = useState<string>('');
+
+  useEffect(() => {
+    getCharactersAction({ page: 1, name: name });
+  }, [name]);
 
   const charactersLists = useMemo(() => {
     return [
@@ -46,11 +51,24 @@ const CharactersSection = ({
     });
   };
 
+  console.log('name', name);
+
   return (
     <div className='flex flex-col md:flex-row items-center justify-between mt-4 gap-4'>
       {charactersLists.map((list, index) => (
         <div className='border-[1px] border-gray-800 rounded-md p-4' key={list[0].name}>
-          <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
+          <div className='flex flex-row gap-4 items-center'>
+            <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
+            <input
+              className='shadow h-[25px] text-sm pl-2 appearance-none border rounded border-primary text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+              type='text'
+              id='textInput'
+              value={name}
+              onChange={e => setName(e.target.value)}
+              placeholder='Search by name...'
+            />
+          </div>
+
           <div className='grid grid-cols-2 gap-4 mt-4'>
             {list.map(character => (
               <div
