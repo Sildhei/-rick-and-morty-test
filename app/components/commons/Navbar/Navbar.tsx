@@ -8,7 +8,18 @@ const Navbar = () => {
       <Container>
         <div className='flex flex-row justify-center py-4'>
           <Link href={`/`}>
-            <Image src='/logo.svg' width={200} height={100} alt='Logo' />
+            <div className='relative w-[300px] h-[70px]'>
+              <Image
+                priority
+                src='/logo.svg'
+                alt='Logo'
+                fill
+                style={{
+                  objectFit: 'fill',
+                }}
+                className='absolute top-0 right-0 bottom-0 left-0'
+              />
+            </div>
           </Link>
         </div>
       </Container>
