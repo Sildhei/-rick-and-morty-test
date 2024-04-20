@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IExtendedCharacterData } from '@/app/api/getAllCharacters';
 import CharactersSection from '../CharactersSection/CharactersSection';
 import Container from '../commons/Container';
@@ -15,6 +15,16 @@ export type CharactersProps = {
 const MainSection = ({ characters }: CharactersProps) => {
   const [selectedCharacters, setSelectedCharacters] = useState<{ id: number; name: string }[]>([]);
   const [episodes, setEpisodes] = useState<IEpisodeData[][]>([]);
+  const episodesSectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedCharacters.length !== 2) {
+      return;
+    }
+    if (episodesSectionRef.current) {
+      episodesSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [episodes]);
 
   return (
     <div className='py-8'>
@@ -26,7 +36,9 @@ const MainSection = ({ characters }: CharactersProps) => {
           setEpisodes={setEpisodes}
         />
         <Pagination totalPages={characters.info.pages} />
-        <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
+        <div ref={episodesSectionRef}>
+          <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
+        </div>
       </Container>
     </div>
   );
