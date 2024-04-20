@@ -20,8 +20,11 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
         <Image
           src={character.image}
           alt={character.name}
-          layout='fill'
-          objectFit='cover'
+          fill
+          sizes="(min-width: 100px) 100vw"
+          style={{
+            objectFit: 'cover',
+          }}
           className={`absolute top-0 right-0 left-0 bottom-0 transition-transform duration-300 transform ${
             !isDisabled && 'lg:group-hover:scale-125'
           }`}
