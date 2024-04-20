@@ -22,7 +22,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         disabled={Number(page) === 1}>
         Prev
       </button>
-      <p className='text-gray-800 text-lg font-bold'>{page}</p>
+      <p className='text-gray-800 text-lg font-bold' data-testid='page-number'>{page}</p>
       <button
         className={`text-lg ${Number(page) !== totalPages ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== totalPages && 'hover:text-green-500'
