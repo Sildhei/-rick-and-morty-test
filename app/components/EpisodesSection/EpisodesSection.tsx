@@ -70,11 +70,12 @@ const EpisodesSection = ({ episodes, selectedCharacters }: EpisodesSectionProps)
       ) : (
         <div className='flex flex-col items-center border-[1px] border-gray-800 rounded-md p-2 w-full max-w-[500px] mx-auto'>
           <h3 className='text-gray-800 text-lg font-bold'>Select two characters to see their episodes...</h3>
-          <div className='w-[300px] h-[350px] relative mt-4'>
+          <div className='relative mt-4'>
             <Image
               src='/episodes-image.png'
               alt='Rick and Morty'
-              layout='fill'
+              width={300}
+              height={350}
               objectFit='cover'
               className={`absolute top-0 right-0 left-0 bottom-0'
           }`}

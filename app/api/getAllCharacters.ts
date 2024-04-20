@@ -16,7 +16,7 @@ export interface ICharacterData {
   image: string;
   episode: string[];
   url: string;
-  created: Date;
+  created: string;
 }
 
 export interface IExtendedCharacterData {
@@ -31,12 +31,11 @@ export interface IExtendedCharacterData {
 
 export const getAllCharacters = async (page: number) => {
   try {
-    console.log('pahe', page);
     const res = await fetch(`${process.env.BASE_URL}/character/?page=${page}`, {
       method: 'GET',
       next: { tags: ['characters-data'] },
     });
-    console.log('res', res);
+ 
     return res.json();
   } catch (error) {
     throw new Error('Failed to fetch data');

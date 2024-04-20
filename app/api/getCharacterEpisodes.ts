@@ -5,7 +5,7 @@ export interface IEpisodeData {
   episode: string;
   characters: string[];
   url: string;
-  created: Date;
+  created: string;
 }
 
 export const getCharacterEpisodes = async (episodesIds: number[]) => {
