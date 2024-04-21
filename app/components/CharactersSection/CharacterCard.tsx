@@ -14,7 +14,7 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
   }, [index, selectedCharacters]);
 
   return (
-    <div className='max-w-[300px] flex flex-col lg:flex-row rounded-md relative group'>
+    <div className='lg:max-w-[300px] flex flex-col lg:flex-row rounded-md relative group'>
       {isDisabled && <div className='absolute inset-0 bg-green-light z-10 opacity-30' />}
       <div className='w-[150px] h-[100px] rounded-t-md lg:w-[100px] lg:h-[120px] lg:rounded-tr-none lg:rounded-l-md relative overflow-hidden'>
         <Image

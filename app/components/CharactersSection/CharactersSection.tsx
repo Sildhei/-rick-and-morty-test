@@ -51,7 +51,7 @@ const CharactersSection = ({
       {charactersLists.map((list, index) => (
         <div className='border-[1px] border-gray-800 rounded-md p-4' key={list[0].name}>
           <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
-          <div className='grid grid-cols-2 gap-4 mt-4'>
+          <div className='grid grid-cols-2 gap-4 mt-4 items-center'>
             {list.map(character => (
               <div
                 key={character.id}
