@@ -1,24 +1,59 @@
 'use client';
 
-import Image from 'next/image';
 import { useRouter, useSearchParams } from 'next/navigation';
-import CaretLeft from '../../../public/caret-left.svg';
 
-const Pagination = ({ totalPages }: { totalPages: number }) => {
+const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const page = searchParams.get('page') ?? '1';
 
+  const handleOnPrevPage = () => {
+    let url = `/?page=${Number(page) - 1}`;
+    if (name) {
+      url += `&name=${name}`;
+    }
+    router.push(url, {
+      scroll: false,
+    });
+  };
+
+  const handleOnNextPage = () => {
+    let url = `/?page=${Number(page) + 1}`;
+    if (name) {
+      url += `&name=${name}`;
+    }
+    router.push(url, {
+      scroll: false,
+    });
+  };
+
+  const handleOnFirstPage = () => {
+    let url = '/?page=1';
+    if (name) {
+      url += `&name=${name}`;
+    }
+    router.push(url, {
+      scroll: false,
+    });
+  };
+
+  const handleOnLastPage = () => {
+    let url = `/?page=${totalPages}`;
+    if (name) {
+      url += `&name=${name}`;
+    }
+    router.push(url, {
+      scroll: false,
+    });
+  };
+
   return (
-    <div className='flex flex-row items-center justify-center gap-6 my-6 w-[350px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
+    <div className='flex flex-row items-center justify-center gap-6 my-6 w-full md:w-[350px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
       <button
         disabled={Number(page) === 1}
-        onClick={() =>
-          router.push('/?page=1', {
-            scroll: false,
-          })
-        }>
+        onClick={() => handleOnFirstPage()}
+        className={`${Number(page) === 1 && 'cursor-not-allowed'}`}>
         <svg
           width='20px'
           height='20px'
@@ -37,11 +72,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         className={`text-lg ${Number(page) !== 1 ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== 1 && 'hover:text-gray-400'
         } ${Number(page) === 1 && 'cursor-not-allowed text-gray-400'} `}
-        onClick={() =>
-          router.push(`/?page=${Number(page) - 1}`, {
-            scroll: false,
-          })
-        }
+        onClick={() => handleOnPrevPage()}
         disabled={Number(page) === 1}>
         <div className='flex flex-row items-center gap-2'>
           <svg fill='none' viewBox='0 0 24 24' stroke-width='1.5' stroke='currentColor' className='w-5 h-5'>
@@ -57,11 +88,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
         className={`text-lg ${Number(page) !== totalPages ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== totalPages && 'hover:text-gray-400'
         } ${Number(page) === totalPages && 'cursor-not-allowed'} `}
-        onClick={() =>
-          router.push(`/?page=${Number(page) + 1}`, {
-            scroll: false,
-          })
-        }
+        onClick={() => handleOnNextPage()}
         disabled={Number(page) === totalPages}>
         <div className='flex flex-row items-center gap-2'>
           <p> Next</p>
@@ -72,11 +99,8 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
       </button>
       <button
         disabled={Number(page) === totalPages}
-        onClick={() =>
-          router.push(`/?page=${totalPages}`, {
-            scroll: false,
-          })
-        }>
+        onClick={() => handleOnLastPage()}
+        className={`${Number(page) === totalPages && 'cursor-not-allowed'}`}>
         <svg
           width='20px'
           height='20px'

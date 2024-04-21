@@ -38,7 +38,7 @@ const MainSection = ({ characters }: CharactersProps) => {
           name={name}
           setName={setName}
         />
-        <Pagination totalPages={characters.info.pages} />
+        <Pagination totalPages={characters.info.pages} name={name} />
         <div ref={episodesSectionRef}>
           <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
         </div>

@@ -32,7 +32,7 @@ export interface IExtendedCharacterData {
 export interface getAllCharactersProps {
   page?: number;
   name?: string;
-  status?: 'alive' | 'dead' | 'unknown';
+  status?: string;
 }
 
 export const getAllCharacters = async ({ page, name, status }: getAllCharactersProps) => {
