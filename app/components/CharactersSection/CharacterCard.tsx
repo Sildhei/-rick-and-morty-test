@@ -21,7 +21,7 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
           src={character.image}
           alt={character.name}
           fill
-          sizes="(min-width: 100px) 100vw"
+          sizes='(min-width: 100px) 100vw'
           style={{
             objectFit: 'cover',
           }}
@@ -33,7 +33,9 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
       <div
         className={`p-2 lg:p-4 w-full h-[80px] lg:w-[200px] lg:h-[120px] ${
           selectedCharacters.find(selected => selected.id === character.id) ? 'bg-primary' : 'bg-gray-800'
-        } ${!isDisabled && 'lg:group-hover:bg-primary'} rounded-b-md lg:rounded-bl-none lg:rounded-r-md transition-all`}>
+        } ${
+          !isDisabled && 'lg:group-hover:bg-primary'
+        } rounded-b-md lg:rounded-bl-none lg:rounded-r-md transition-all`}>
         <p
           className={`font-bold line-clamp-2 leading-5 ${
             selectedCharacters.find(selected => selected.id === character.id) ? 'text-gray-800' : 'text-primary'

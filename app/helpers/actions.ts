@@ -1,6 +1,6 @@
 'use server';
 
-import { getAllCharacters } from '../api/getAllCharacters';
+import { getAllCharacters, getAllCharactersProps } from '../api/getAllCharacters';
 import { getCharacterEpisodes } from '../api/getCharacterEpisodes';
 
 export async function getEpisodesAction(episodes: number[]) {
@@ -8,7 +8,7 @@ export async function getEpisodesAction(episodes: number[]) {
   return response;
 }
 
-export async function getCharactersAction(page: number) {
-  const response = getAllCharacters(page);
+export async function getCharactersAction({ page, name, status }: getAllCharactersProps) {
+  const response = getAllCharacters({ page: page, name: name, status: status });
   return response;
 }

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import { getCharactersAction } from '@/app/helpers/actions';
 import Image from 'next/image';
@@ -18,7 +18,7 @@ const ErrorComponent = ({ message }: { message: string }) => {
         <Link
           className='text-gray-800 text-xl mt-20 font-bold border-[1px] border-gray-800 rounded-md p-2 hover:bg-gray-800 hover:text-gray-300 transition-all'
           href={`/`}
-          onClick={() => getCharactersAction(1)}>
+          onClick={() => getCharactersAction({ page: 1 })}>
           Go to page 1
         </Link>
       </div>
