@@ -32,6 +32,8 @@ const CharactersSection = ({
       return;
     }
     const delay = setTimeout(() => {
+      setSelectedCharacters([]);
+      setEpisodes([]);
       router.push(`/?name=${name}`);
     }, 500);
 
