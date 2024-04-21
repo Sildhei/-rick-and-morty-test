@@ -51,6 +51,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
   return (
     <div className='flex flex-row items-center justify-center gap-6 my-6 w-full md:w-[350px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
       <button
+        aria-label='Go to first page'
         disabled={Number(page) === 1}
         onClick={() => handleOnFirstPage()}
         className={`${Number(page) === 1 && 'cursor-not-allowed'}`}>
@@ -69,6 +70,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
         </svg>
       </button>
       <button
+        aria-label='Go to previous page'
         className={`text-lg ${Number(page) !== 1 ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== 1 && 'hover:text-gray-400'
         } ${Number(page) === 1 && 'cursor-not-allowed text-gray-400'} `}
@@ -85,6 +87,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
         {page} of {totalPages}
       </p>
       <button
+        aria-label='Go to next page'
         className={`text-lg ${Number(page) !== totalPages ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== totalPages && 'hover:text-gray-400'
         } ${Number(page) === totalPages && 'cursor-not-allowed'} `}
@@ -98,6 +101,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
         </div>
       </button>
       <button
+        aria-label='Go to last page'
         disabled={Number(page) === totalPages}
         onClick={() => handleOnLastPage()}
         className={`${Number(page) === totalPages && 'cursor-not-allowed'}`}>
