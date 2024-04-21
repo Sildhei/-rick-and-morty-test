@@ -11,7 +11,7 @@ const Pagination = ({ totalPages }: { totalPages: number }) => {
   const page = searchParams.get('page') ?? '1';
 
   return (
-    <div className='flex flex-row items-center justify-center gap-6 my-6 w-[350px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
+    <div className='flex flex-row items-center justify-center gap-6 my-6 w-full md:w-[350px] border-[1px] border-gray-800 rounded-md p-1 mx-auto'>
       <button
         disabled={Number(page) === 1}
         onClick={() =>

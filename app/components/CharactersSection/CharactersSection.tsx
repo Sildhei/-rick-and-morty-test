@@ -49,7 +49,7 @@ const CharactersSection = ({
   return (
     <div className='flex flex-col md:flex-row items-center justify-between mt-4 gap-4'>
       {charactersLists.map((list, index) => (
-        <div className='border-[1px] border-gray-800 rounded-md p-4' key={list[0].name}>
+        <div className='border-[1px] border-gray-800 rounded-md p-4 w-full' key={list[0].name}>
           <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
           <div className='grid grid-cols-2 gap-4 mt-4 items-center'>
             {list.map(character => (

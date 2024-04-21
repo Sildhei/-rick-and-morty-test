@@ -14,9 +14,9 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
   }, [index, selectedCharacters]);
 
   return (
-    <div className='lg:max-w-[300px] flex flex-col lg:flex-row rounded-md relative group'>
-      {isDisabled && <div className='absolute inset-0 bg-green-light z-10 opacity-30' />}
-      <div className='w-[150px] h-[100px] rounded-t-md lg:w-[100px] lg:h-[120px] lg:rounded-tr-none lg:rounded-l-md relative overflow-hidden'>
+    <div className='max-w-[300px] flex flex-col items-center lg:flex-row rounded-md relative group'>
+      {isDisabled && <div className='absolute inset-0 bg-green-light z-10 opacity-30 min-w-[130px]' />}
+      <div className='w-full h-[100px] rounded-t-md lg:w-[100px] lg:h-[120px] lg:rounded-tr-none lg:rounded-l-md relative overflow-hidden'>
         <Image
           src={character.image}
           alt={character.name}
@@ -31,7 +31,7 @@ const CharacterCard = ({ character, selectedCharacters, index }: CharacterProps)
         />
       </div>
       <div
-        className={`p-2 lg:p-4 w-[150px] h-[80px] lg:w-[200px] lg:h-[120px] ${
+        className={`p-2 lg:p-4 w-full h-[80px] lg:w-[200px] lg:h-[120px] ${
           selectedCharacters.find(selected => selected.id === character.id) ? 'bg-primary' : 'bg-gray-800'
         } ${!isDisabled && 'lg:group-hover:bg-primary'} rounded-b-md lg:rounded-bl-none lg:rounded-r-md transition-all`}>
         <p
