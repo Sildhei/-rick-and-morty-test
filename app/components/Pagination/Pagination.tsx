@@ -8,7 +8,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
 
   const page = searchParams.get('page') ?? '1';
 
-  const handleOnPrevPage = () => {
+  const handlePrevPage = () => {
     let url = `/?page=${Number(page) - 1}`;
     if (name) {
       url += `&name=${name}`;
@@ -18,7 +18,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
     });
   };
 
-  const handleOnNextPage = () => {
+  const handleNextPage = () => {
     let url = `/?page=${Number(page) + 1}`;
     if (name) {
       url += `&name=${name}`;
@@ -28,7 +28,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
     });
   };
 
-  const handleOnFirstPage = () => {
+  const handleFirstPage = () => {
     let url = '/?page=1';
     if (name) {
       url += `&name=${name}`;
@@ -38,7 +38,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
     });
   };
 
-  const handleOnLastPage = () => {
+  const handleLastPage = () => {
     let url = `/?page=${totalPages}`;
     if (name) {
       url += `&name=${name}`;
@@ -53,7 +53,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
       <button
         aria-label='Go to first page'
         disabled={Number(page) === 1}
-        onClick={() => handleOnFirstPage()}
+        onClick={() => handleFirstPage()}
         className={`${Number(page) === 1 && 'cursor-not-allowed'}`}>
         <svg
           width='20px'
@@ -74,7 +74,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
         className={`text-lg ${Number(page) !== 1 ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== 1 && 'hover:text-gray-400'
         } ${Number(page) === 1 && 'cursor-not-allowed text-gray-400'} `}
-        onClick={() => handleOnPrevPage()}
+        onClick={() => handlePrevPage()}
         disabled={Number(page) === 1}>
         <div className='flex flex-row items-center gap-2'>
           <svg fill='none' viewBox='0 0 24 24' strokeWidth='1.5' stroke='currentColor' className='w-5 h-5'>
@@ -91,7 +91,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
         className={`text-lg ${Number(page) !== totalPages ? 'text-gray-800' : 'text-gray-400'} ${
           Number(page) !== totalPages && 'hover:text-gray-400'
         } ${Number(page) === totalPages && 'cursor-not-allowed'} `}
-        onClick={() => handleOnNextPage()}
+        onClick={() => handleNextPage()}
         disabled={Number(page) === totalPages}>
         <div className='flex flex-row items-center gap-2'>
           <p> Next</p>
@@ -103,7 +103,7 @@ const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) 
       <button
         aria-label='Go to last page'
         disabled={Number(page) === totalPages}
-        onClick={() => handleOnLastPage()}
+        onClick={() => handleLastPage()}
         className={`${Number(page) === totalPages && 'cursor-not-allowed'}`}>
         <svg
           width='20px'
