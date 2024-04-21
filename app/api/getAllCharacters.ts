@@ -29,19 +29,29 @@ export interface IExtendedCharacterData {
   results: ICharacterData[];
 }
 
-export const getAllCharacters = async (page: number) => {
+export interface getAllCharactersProps {
+  page?: number;
+  name?: string;
+  status?: string;
+}
+
+export const getAllCharacters = async ({ page, name, status }: getAllCharactersProps) => {
+
   try {
-    const res = await fetch(`${process.env.BASE_URL}/character/?page=${page}`, {
+    let url = `${process.env.BASE_URL}/character/?page=${page}`;
+    if (name) {
+      url += `&name=${name}`;
+    }
+    if (status) {
+      url += `&status=${status}`;
+    }
+
+    const res = await fetch(url, {
       method: 'GET',
       next: { tags: ['characters-data'] },
     });
- 
     return res.json();
   } catch (error) {
     throw new Error('Failed to fetch data');
   }
-
-  // if (!res.ok) {
-  //   throw new Error('Failed to fetch data');
-  // }
 };
