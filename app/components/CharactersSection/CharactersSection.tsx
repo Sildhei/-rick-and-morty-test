@@ -7,11 +7,14 @@ import { CharactersProps } from '../MainSection/MainSection';
 import { ICharacterData } from '@/app/api/getAllCharacters';
 import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
 import { getCharactersAction, getEpisodesAction } from '@/app/helpers/actions';
+import { useRouter } from 'next/navigation';
 
 interface CharactersSectionProps extends CharactersProps {
   selectedCharacters: { id: number; name: string }[];
   setSelectedCharacters: Dispatch<SetStateAction<{ id: number; name: string }[]>>;
   setEpisodes: Dispatch<SetStateAction<IEpisodeData[][]>>;
+  name: string;
+  setName: Dispatch<SetStateAction<string>>;
 }
 
 const CharactersSection = ({
@@ -19,14 +22,26 @@ const CharactersSection = ({
   selectedCharacters,
   setSelectedCharacters,
   setEpisodes,
+  name,
+  setName,
 }: CharactersSectionProps) => {
-  const [name, setName] = useState<string>('');
+  const router = useRouter();
 
   useEffect(() => {
-    getCharactersAction({ page: 1, name: name });
+    if (!router) {
+      return;
+    }
+    const delay = setTimeout(() => {
+      router.push(`/?name=${name}`);
+    }, 1000);
+
+    return () => clearTimeout(delay);
   }, [name]);
 
   const charactersLists = useMemo(() => {
+    if (characters.results.length === 1) {
+      return [characters.results, []];
+    }
     return [
       characters.results.slice(0, characters.results.length / 2),
       characters.results.slice(characters.results.length / 2, characters.results.length),
@@ -51,39 +66,45 @@ const CharactersSection = ({
     });
   };
 
-  console.log('name', name);
-
   return (
-    <div className='flex flex-col md:flex-row items-center justify-between mt-4 gap-4'>
-      {charactersLists.map((list, index) => (
-        <div className='border-[1px] border-gray-800 rounded-md p-4' key={list[0].name}>
-          <div className='flex flex-row gap-4 items-center'>
-            <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
-            <input
-              className='shadow h-[25px] text-sm pl-2 appearance-none border rounded border-primary text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
-              type='text'
-              id='textInput'
-              value={name}
-              onChange={e => setName(e.target.value)}
-              placeholder='Search by name...'
-            />
-          </div>
-
-          <div className='grid grid-cols-2 gap-4 mt-4'>
-            {list.map(character => (
-              <div
-                key={character.id}
-                role='button'
-                onClick={() =>
-                  index === 1 && selectedCharacters.length === 0 ? null : handleOnClickCharacter(character, index)
-                }
-                className={`${index === 1 && selectedCharacters.length === 0 ? 'cursor-not-allowed' : null}`}>
-                <CharacterCard character={character} selectedCharacters={selectedCharacters} index={index} />
+    <div>
+      <div className='flex flex-row items-center gap-2'>
+        <p className='text-gray-800 font-bold text-lg'>Filters</p>
+        <input
+          className='shadow h-[25px] text-sm pl-2 appearance-none border rounded border-gray-800 focus:border-primary text-gray-700 leading-tight focus:outline-none focus:shadow-outline'
+          type='text'
+          id='textInput'
+          value={name}
+          onChange={e => setName(e.target.value)}
+          placeholder='Search by name...'
+        />
+      </div>
+      <div className='flex flex-col md:flex-row items-center justify-between mt-4 gap-4'>
+        {charactersLists.map((list, index) => (
+          <div className='border-[1px] border-gray-800 rounded-md p-4 lg:min-h-[200px] lg:w-full' key={index}>
+            <div className='flex flex-row gap-4 items-center'>
+              <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
+            </div>
+            {list.length === 0 ? (
+              <p className='text-red-600 pt-4'>There are no more characters with {name} in its name</p>
+            ) : (
+              <div className='grid grid-cols-2 gap-4 mt-4'>
+                {list.map(character => (
+                  <div
+                    key={character.id}
+                    role='button'
+                    onClick={() =>
+                      index === 1 && selectedCharacters.length === 0 ? null : handleOnClickCharacter(character, index)
+                    }
+                    className={`${index === 1 && selectedCharacters.length === 0 ? 'cursor-not-allowed' : null}`}>
+                    <CharacterCard character={character} selectedCharacters={selectedCharacters} index={index} />
+                  </div>
+                ))}
               </div>
-            ))}
+            )}
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 };

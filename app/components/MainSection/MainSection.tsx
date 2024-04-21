@@ -16,6 +16,7 @@ const MainSection = ({ characters }: CharactersProps) => {
   const [selectedCharacters, setSelectedCharacters] = useState<{ id: number; name: string }[]>([]);
   const [episodes, setEpisodes] = useState<IEpisodeData[][]>([]);
   const episodesSectionRef = useRef<HTMLDivElement>(null);
+  const [name, setName] = useState<string>('');
 
   useEffect(() => {
     if (selectedCharacters.length !== 2) {
@@ -34,6 +35,8 @@ const MainSection = ({ characters }: CharactersProps) => {
           selectedCharacters={selectedCharacters}
           setSelectedCharacters={setSelectedCharacters}
           setEpisodes={setEpisodes}
+          name={name}
+          setName={setName}
         />
         <Pagination totalPages={characters.info.pages} />
         <div ref={episodesSectionRef}>

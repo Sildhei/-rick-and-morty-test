@@ -36,7 +36,7 @@ export interface getAllCharactersProps {
 }
 
 export const getAllCharacters = async ({ page, name, status }: getAllCharactersProps) => {
-console.log('name', name)
+
   try {
     let url = `${process.env.BASE_URL}/character/?page=${page}`;
     if (name) {
