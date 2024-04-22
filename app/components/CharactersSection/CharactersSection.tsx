@@ -12,7 +12,7 @@ interface CharactersSectionProps extends CharactersProps {
   selectedCharacters: { id: number; name: string }[];
   setSelectedCharacters: Dispatch<SetStateAction<{ id: number; name: string }[]>>;
   setEpisodes: Dispatch<SetStateAction<IEpisodeData[][]>>;
-  name: string;
+  name: string | undefined;
 }
 
 const CharactersSection = ({
@@ -52,7 +52,7 @@ const CharactersSection = ({
   };
 
   return (
-    <div>
+    <>
       <div className='flex flex-col md:flex-row items-center justify-between mt-4 gap-4'>
         {charactersLists.map((list, index) => (
           <div
@@ -62,7 +62,7 @@ const CharactersSection = ({
               <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
             </div>
             {list.length === 0 ? (
-              <p className='text-red-600 pt-4'>There are no more characters with {name} in it&apos;s name</p>
+              <p className='text-red-600 pt-4'>There are no more characters with "{name}" in it's name</p>
             ) : (
               <div className='grid grid-cols-2 gap-2 lg:gap-4 mt-4'>
                 {list.map(character => (
@@ -81,7 +81,7 @@ const CharactersSection = ({
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

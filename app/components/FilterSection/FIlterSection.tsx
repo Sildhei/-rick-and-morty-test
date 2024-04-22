@@ -1,29 +1,32 @@
+import { Dispatch, SetStateAction, useEffect } from 'react';
 import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
 import { useRouter } from 'next/navigation';
-import { Dispatch, SetStateAction, useEffect } from 'react';
 
 interface FiltersProps {
   setSelectedCharacters: Dispatch<SetStateAction<{ id: number; name: string }[]>>;
   setEpisodes: Dispatch<SetStateAction<IEpisodeData[][]>>;
   name: string;
   setName: Dispatch<SetStateAction<string>>;
+  paramPage: string;
 }
 
-const FilterSection = ({ setSelectedCharacters, setEpisodes, name, setName }: FiltersProps) => {
+const FilterSection = ({ setSelectedCharacters, setEpisodes, name, setName, paramPage }: FiltersProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!router) {
-      return;
-    }
     const delay = setTimeout(() => {
       setSelectedCharacters([]);
       setEpisodes([]);
-      router.push(`/?name=${name}`);
+
+      if (name !== '') {
+        router.push(`/?page=${paramPage ?? '1'}&name=${name}`, {
+          scroll: false,
+        });
+      }
     }, 500);
 
     return () => clearTimeout(delay);
-  }, [name]);
+  }, [name, router]);
 
   const handleClearSelection = () => {
     setSelectedCharacters([]);
@@ -45,7 +48,9 @@ const FilterSection = ({ setSelectedCharacters, setEpisodes, name, setName }: Fi
           />
           <div
             className='absolute top-[5px] right-[8px] stroke-gray-800 lg:hover:stroke-gray-400 lg:hover:cursor-pointer'
-            onClick={() => setName('')}>
+            onClick={() => {
+              router.push(`/?page=1&name=`), setName('');
+            }}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               fill='none'

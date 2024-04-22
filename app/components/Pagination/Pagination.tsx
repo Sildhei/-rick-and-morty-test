@@ -2,11 +2,12 @@
 
 import { useRouter, useSearchParams } from 'next/navigation';
 
-const Pagination = ({ totalPages, name }: { totalPages: number; name: string }) => {
+const Pagination = ({ totalPages }: { totalPages: number }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
   const page = searchParams.get('page') ?? '1';
+  const name = searchParams.get('name') ?? ''
 
   const handlePrevPage = () => {
     let url = `/?page=${Number(page) - 1}`;

@@ -18,7 +18,7 @@ const ErrorComponent = ({ message }: { message: string }) => {
         {message !== 'There is nothing here' && (
           <Link
             className='text-gray-800 text-xl mt-20 font-bold border-[1px] border-gray-800 rounded-md p-2 hover:bg-gray-800 hover:text-gray-300 transition-all'
-            href={`/`}
+            href={`/?page=1&name=`}
             onClick={() => getCharactersAction({ page: 1 })}>
             Go to page 1
           </Link>

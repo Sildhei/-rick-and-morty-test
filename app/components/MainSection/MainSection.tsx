@@ -14,11 +14,16 @@ export type CharactersProps = {
   characters: IExtendedCharacterData;
 };
 
-const MainSection = ({ characters }: CharactersProps) => {
+interface MainSectionProps extends CharactersProps{
+  paramName: string
+  paramPage: string
+}
+
+const MainSection = ({ characters, paramName, paramPage }: MainSectionProps) => {
   const [selectedCharacters, setSelectedCharacters] = useState<{ id: number; name: string }[]>([]);
   const [episodes, setEpisodes] = useState<IEpisodeData[][]>([]);
   const episodesSectionRef = useRef<HTMLDivElement>(null);
-  const [name, setName] = useState<string>('');
+  const [name, setName] = useState<string>(paramName);
 
   useEffect(() => {
     if (selectedCharacters.length !== 2) {
@@ -37,9 +42,10 @@ const MainSection = ({ characters }: CharactersProps) => {
           setEpisodes={setEpisodes}
           name={name}
           setName={setName}
+          paramPage={paramPage}
         />
         {characters.error ? (
-          <ErrorComponent message={characters.error}/>
+          <ErrorComponent message={characters.error} />
         ) : (
           <>
             <CharactersSection
@@ -48,8 +54,9 @@ const MainSection = ({ characters }: CharactersProps) => {
               setSelectedCharacters={setSelectedCharacters}
               setEpisodes={setEpisodes}
               name={name}
+          
             />
-            <Pagination totalPages={characters.info.pages} name={name} />
+            <Pagination totalPages={characters.info.pages} />
             <div ref={episodesSectionRef}>
               <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
             </div>
