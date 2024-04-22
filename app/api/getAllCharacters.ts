@@ -35,15 +35,12 @@ export interface getAllCharactersProps {
   status?: string;
 }
 
-export const getAllCharacters = async ({ page, name, status }: getAllCharactersProps) => {
+export const getAllCharacters = async ({ page, name }: getAllCharactersProps) => {
 
   try {
     let url = `${process.env.BASE_URL}/character/?page=${page}`;
     if (name) {
       url += `&name=${name}`;
-    }
-    if (status) {
-      url += `&status=${status}`;
     }
 
     const res = await fetch(url, {
