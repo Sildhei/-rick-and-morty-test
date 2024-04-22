@@ -59,7 +59,7 @@ describe('Home', () => {
   //Se testea que el número de página activa coincida con lo definido en searchParams(page: 8)
   it('Correcto paginado', async () => {
     const pagination = await screen.findByTestId('page-number');
-    await expect(pagination.textContent).toEqual('8');
+    await expect(pagination.textContent).toEqual('8 of 42');
   });
 
   //Se testea que al seleccionar dos personajes se muestren los episodios
