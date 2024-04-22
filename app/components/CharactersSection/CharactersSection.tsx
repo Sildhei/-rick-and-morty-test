@@ -62,7 +62,7 @@ const CharactersSection = ({
               <h3 className='text-gray-800 font-bold text-xl'>Character #{index + 1}</h3>
             </div>
             {list.length === 0 ? (
-              <p className='text-red-600 pt-4'>There are no more characters with "{name}" in it's name</p>
+              <p className='text-red-600 pt-4'>There are no more characters with <span className="font-bold">{name}</span> in it&apos;s name</p>
             ) : (
               <div className='grid grid-cols-2 gap-2 lg:gap-4 mt-4'>
                 {list.map(character => (
