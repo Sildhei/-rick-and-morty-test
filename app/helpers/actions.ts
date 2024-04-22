@@ -8,7 +8,7 @@ export async function getEpisodesAction(episodes: number[]) {
   return response;
 }
 
-export async function getCharactersAction({ page, name, status }: getAllCharactersProps) {
-  const response = getAllCharacters({ page: page, name: name, status: status });
+export async function getCharactersAction({ page, name }: getAllCharactersProps) {
+  const response = getAllCharacters({ page: page, name: name });
   return response;
 }
