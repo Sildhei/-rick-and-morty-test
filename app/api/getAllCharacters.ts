@@ -27,12 +27,12 @@ export interface IExtendedCharacterData {
     prev: number | null;
   };
   results: ICharacterData[];
+  error?: string;
 }
 
 export interface getAllCharactersProps {
   page?: number;
   name?: string;
-  status?: string;
 }
 
 export const getAllCharacters = async ({ page, name }: getAllCharactersProps) => {
