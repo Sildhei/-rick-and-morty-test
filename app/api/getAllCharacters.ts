@@ -27,6 +27,7 @@ export interface IExtendedCharacterData {
     prev: number | null;
   };
   results: ICharacterData[];
+  error?: string;
 }
 
 export interface getAllCharactersProps {

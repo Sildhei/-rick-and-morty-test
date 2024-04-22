@@ -7,6 +7,8 @@ import Container from '../commons/Container';
 import Pagination from '../Pagination/Pagination';
 import EpisodesSection from '../EpisodesSection/EpisodesSection';
 import { IEpisodeData } from '@/app/api/getCharacterEpisodes';
+import FilterSection from '../FilterSection/FIlterSection';
+import ErrorComponent from '../Error/ErrorComponent';
 
 export type CharactersProps = {
   characters: IExtendedCharacterData;
@@ -30,18 +32,29 @@ const MainSection = ({ characters }: CharactersProps) => {
   return (
     <div className='py-8'>
       <Container>
-        <CharactersSection
-          characters={characters}
-          selectedCharacters={selectedCharacters}
+        <FilterSection
           setSelectedCharacters={setSelectedCharacters}
           setEpisodes={setEpisodes}
           name={name}
           setName={setName}
         />
-        <Pagination totalPages={characters.info.pages} name={name} />
-        <div ref={episodesSectionRef}>
-          <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
-        </div>
+        {characters.error ? (
+          <ErrorComponent message={characters.error}/>
+        ) : (
+          <>
+            <CharactersSection
+              characters={characters}
+              selectedCharacters={selectedCharacters}
+              setSelectedCharacters={setSelectedCharacters}
+              setEpisodes={setEpisodes}
+              name={name}
+            />
+            <Pagination totalPages={characters.info.pages} name={name} />
+            <div ref={episodesSectionRef}>
+              <EpisodesSection episodes={episodes} selectedCharacters={selectedCharacters} />
+            </div>
+          </>
+        )}
       </Container>
     </div>
   );

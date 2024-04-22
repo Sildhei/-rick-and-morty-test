@@ -8,8 +8,8 @@ export default async function Home({ searchParams }: { searchParams: { [key: str
 
   const characters = await getAllCharacters({ page: Number(page), name: name });
 
-  if (characters.error || isNaN(Number(page))) {
-    return <ErrorComponent message={characters.error ? characters.error : 'Invalid Url'} />;
+  if (isNaN(Number(page))) {
+    return <ErrorComponent message={'Invalid Url'} />;
   }
 
   return (
