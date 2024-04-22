@@ -39,13 +39,12 @@ export const getAllCharacters = async ({ page, name }: getAllCharactersProps) =>
 
   try {
     let url = `${process.env.BASE_URL}/character/?page=${page}`;
-    if (name) {
+    if (name !== '') {
       url += `&name=${name}`;
     }
 
     const res = await fetch(url, {
-      method: 'GET',
-      next: { tags: ['characters-data'] },
+      method: 'GET'
     });
     return res.json();
   } catch (error) {

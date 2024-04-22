@@ -14,7 +14,7 @@ export default function NotFound() {
         </div>
         <Link
           className='text-gray-800 text-xl mt-20 font-bold border-[1px] border-gray-800 rounded-md p-2 hover:bg-gray-800 hover:text-gray-300 transition-all'
-          href={`/`}>
+          href={`/?page=1&name=`}>
           Go Home
         </Link>
       </div>

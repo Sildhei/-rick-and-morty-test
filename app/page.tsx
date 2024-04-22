@@ -3,18 +3,18 @@ import ErrorComponent from './components/Error/ErrorComponent';
 import MainSection from './components/MainSection/MainSection';
 
 export default async function Home({ searchParams }: { searchParams: { [key: string]: string | undefined } }) {
-  const page = searchParams['page'] ?? '1';
-  const name = searchParams['name'] ?? undefined
+  const paramPage = searchParams['page'] ?? '1';
+  const paramName = searchParams['name'] ?? ''
 
-  const characters = await getAllCharacters({ page: Number(page), name: name });
+  const characters = await getAllCharacters({ page: Number(paramPage), name: paramName });
 
-  if (isNaN(Number(page))) {
-    return <ErrorComponent message={'Invalid Url'} />;
+  if (isNaN(Number(paramPage))) {
+    return <ErrorComponent message='Invalid Url' />;
   }
 
   return (
     <div className='bg-gray-300'>
-      <MainSection characters={characters} />
+      <MainSection characters={characters} paramName={paramName} paramPage={paramPage} />
     </div>
   );
 }

@@ -7,7 +7,7 @@ const Navbar = () => {
     <nav className='bg-gray-800'>
       <Container>
         <div className='flex flex-row justify-center py-4'>
-          <Link href={`/`}>
+          <Link href={`/?page=1&name=`}>
             <div className='relative w-[300px] h-[70px]'>
               <Image
                 priority
